@@ -17,5 +17,9 @@ def make_corr_plot(df):
     return fig
 
 def data(df):
+    flag = st.checkbox(label="Show Data")
+    if flag:
+        st.dataframe(data=df)
+    st.dataframe(data=df.describe())
     st.plotly_chart(make_corr_plot(df))
 
