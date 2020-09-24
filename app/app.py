@@ -6,13 +6,14 @@ import os
 from src.utils.data import data
 from src.utils.home import home
 from src.utils.visualizations import visualizations
+from src.utils.predictor import predictor
 
 pd.options.mode.chained_assignment = None
 
 PAGE_DICT = {"Home": home,
              "Data": data,
              "Visualizations": visualizations,
-             "Heart Disease Predictor": None
+             "Heart Disease Predictor": predictor
             }
 def clean_data(df):
     df['sex'][df['sex'] == 0] = 'female'
@@ -56,7 +57,7 @@ def change_dtypes(df):
     return df
 
 def main():
-    st.title("Heart Disease Application")
+    st.title("❤️ Heart Disease Application ❤️")
     df = pd.read_csv("app/src/data/heart.csv")
     option = st.sidebar.radio(label="Menu", 
                              options=["Home", 
