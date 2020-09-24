@@ -30,8 +30,8 @@ def plot_single_feature(df, feature):
     fig.update_xaxes(title=feature)
     fig.update_yaxes(title=yaxis_title)
     fig.update_layout(showlegend=False,
-                      height=700, 
-                      width=700, 
+                      height=500, 
+                      width=500, 
                       title="Distribution of {}".format(feature), 
                       xaxis_type=xaxis_type)
 
@@ -95,21 +95,37 @@ def plot_dual_features(df, feature_1, feature_2):
 def visualizations(df):
     st.header("Visualizing our data")
     column_list = df.columns.to_list()
-    viz_type = st.selectbox(label="Select the type of visualization", 
-                 options=["Single feature", 
-                          "Interaction between two features"
-                         ])
+    st.markdown("""
+            This section will have visualizations which will be created automatically
+            based on rules assigned for the type of variable being visualized. 
 
-    if viz_type == "Single feature":
-        feature = st.selectbox(label="Select the feature", options=column_list)
-        plot_single_feature(df, feature)
-
-    elif viz_type == "Interaction between two features":
-
-        features = st.multiselect(label="Select any two distinct features", 
-                                        options=column_list)
-        if len(features) == 2:
-            plot_dual_features(df, features[0], features[1])
+            Rules for single variable visualizations:
+            * Numerical variables will be represented by histograms.
+            * The visualizations for numerical variables will have "Frequency" as the y-axis label.
+            * Categorical variables will be represented by bar charts.
+            * The visualizations for categorical variables will have "Count" as the y-axis label. 
+            """)
 
 
+    st.subheader("Single feature visualization")
+    feature = st.selectbox(label="Select the feature", options=column_list)
+    plot_single_feature(df, feature)
+
+    st.markdown("""
+                Feature interaction visualizations will have two variables
+                and will plot the relationship between them.
+
+                Rules for feature interaction visualization:
+                * Only two variables can be used for this visualization.
+                * Both variables have to be different.
+                * For numerical vs numerical visuals, we will be using scatter plots.
+                * For numerical vs categorical visuals, we will be using box plots.
+                * For categorical vs categorical visuals, we will be using scatter plots.
+                """)
+
+    st.subheader("Feature interaction visualization")
+    features = st.multiselect(label="Select any two distinct features", 
+                              options=column_list)
+    if len(features) == 2:
+        plot_dual_features(df, features[0], features[1])
 
