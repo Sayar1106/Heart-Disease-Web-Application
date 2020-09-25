@@ -1,4 +1,10 @@
 # Heart-Disease-Web-Application
+![Repo Size](https://img.shields.io/github/repo-size/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
+![License](https://img.shields.io/github/license/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
+![Code Quality](https://img.shields.io/lgtm/grade/python/github/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
+
 A data web application to predict heart disease using Streamlit.
 
 
@@ -104,6 +110,7 @@ Recommended:
 * Pandas
 * Numpy
 * Plotly
+* Scikit-learn
 
 Optional
 * Shell
@@ -113,3 +120,5 @@ Optional
 I will be using Visual Studio Code for this project because they offer fantastic support for Python and for IPython Notebooks. I will be demoing code in both in an IPython Notebook as well as Python3.
 
 You can install Visual Studio Code [here](https://code.visualstudio.com/download)
+
+Feel free to submit pull requests or add issues to the project.
