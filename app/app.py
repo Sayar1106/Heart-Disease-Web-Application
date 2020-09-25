@@ -15,6 +15,7 @@ PAGE_DICT = {"Home": home,
              "Visualizations": visualizations,
              "Heart Disease Predictor": predictor
             }
+
 def clean_data(df):
     df['sex'][df['sex'] == 0] = 'female'
     df['sex'][df['sex'] == 1] = 'male'
@@ -59,7 +60,8 @@ def change_dtypes(df):
 def main():
     st.title("❤️ Heart Disease Application ❤️")
     df = pd.read_csv("app/src/data/heart.csv")
-    option = st.sidebar.radio(label="Menu", 
+    st.sidebar.title("Menu")
+    option = st.sidebar.radio(label="Select", 
                              options=["Home", 
                                      "Data", 
                                      "Visualizations", 
@@ -71,6 +73,12 @@ def main():
     df = change_dtypes(df)
 
     PAGE_DICT[option](df)
+
+    st.sidebar.header("Project Repo info")
+    st.sidebar.info("""
+                    The application repository is located in Github.
+                    You can contribute to it [here](https://github.com/Sayar1106/Heart-Disease-Web-Application)
+                    """)
 
 if __name__ == "__main__":
     main()
