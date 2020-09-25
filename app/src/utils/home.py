@@ -3,6 +3,7 @@ import streamlit as st
 def home(df):
     st.markdown("This is a web application designed as part of the project workshop event by **scholars of the Udacity Microsoft Azure ML course**.")
     st.markdown("Our goal is to be able to predict the possibility of heart disease among patients using Data Science and Machine Learning")
+    # Shields can be found at img.shields.io:
     st.markdown("""
                 ![Repo Size](https://img.shields.io/github/repo-size/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)
                 ![License](https://img.shields.io/github/license/Sayar1106/Heart-Disease-Web-Application?style=for-the-badge)

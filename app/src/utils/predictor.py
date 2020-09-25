@@ -3,6 +3,27 @@ import pandas as pd
 import joblib
 
 def create_inference_input(df):
+    """
+    Function that creates an input form for ML model.
+
+    The function will build the structure for an input form
+    using Streamlit functions. The input from the form will be
+    taken and converted into a dictionary with the keys being
+    the column names of the dataframe and the values being the 
+    inputs.
+
+    Parameters
+    ----------
+    df: DataFrame
+        A dataframe containing the the heart disease data.
+    
+    Returns
+    -------
+    response_dict: Dict
+        A dictionary containing the key, value pairs of the 
+        column names of the dataframe and the values from the input
+        form.
+    """
     input_list = []
     age = st.sidebar.slider(label="Age", 
                             min_value=min(df["age"]), 
@@ -63,6 +84,7 @@ def create_inference_input(df):
     st.sidebar.write("\n")
     input_list.append(thalassemia)
 
+    # Dictionary comprehension for creating the response dictionary:
     response_dict = {column:value for column, value in zip(df.columns, input_list)}
 
     return response_dict
@@ -77,23 +99,34 @@ def predictor(df):
              the machine learning model which will help predict the possibility of heart disease or not.
              """)
     st.sidebar.header("Input form for ML model")
+    # Getting user input values in correct format
     response_dict = create_inference_input(df)
     
     name = st.text_input(label="Enter your name")
 
+    # Dump the user inputs in a file:
     if st.sidebar.button(label="Submit input to model"):
         joblib.dump(response_dict, "app/src/utils/payload_dump/response_dict.bin")
 
     if st.button(label="Predict"):
+        # Load user inputs:
         response_dict = joblib.load("app/src/utils/payload_dump/response_dict.bin")
+        # Append user inputs to existing dataframe:
         df = df.append(response_dict, ignore_index=True)
+        # Load the saved ML model:
         model = joblib.load("app/src/models/rf_model.bin")
+        # Drop the target variable:
         df.drop(["target"], axis=1, inplace=True)
+        # Create dummy variables:
         df = pd.get_dummies(df, drop_first=True)
+        # Get prediction:
         pred = model.predict(df.iloc[-1, :].values.reshape(1, -1))
+        # Get the prediction probabilities for the two classes:
         pred_prob = model.predict_proba(df.iloc[-1, :].values.reshape(1, -1))
+        # Convert prediction into human readable string:
         pred = "No you do not have heart disease" if pred == 0 else "You have heart disease"
 
+        # Create a dataframe to store resutls:
         result = pd.DataFrame({"Values": [name, round(pred_prob[0][1], 2), pred]},
                                 index=["Name", 
                                     "Probability of Heart Disease", 

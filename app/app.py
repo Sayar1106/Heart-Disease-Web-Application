@@ -10,6 +10,7 @@ from src.utils.predictor import predictor
 
 pd.options.mode.chained_assignment = None
 
+# Dictionary that calls function objects for each website page:
 PAGE_DICT = {"Home": home,
              "Data": data,
              "Visualizations": visualizations,
@@ -17,6 +18,19 @@ PAGE_DICT = {"Home": home,
             }
 
 def clean_data(df):
+    """
+    Function will be used to clean the dataset.
+
+    Parameters
+    ----------
+    df: DataFrame
+        A dataframe containing the the heart disease data.
+    
+    Returns
+    -------
+    df: DataFrame
+        A dataframe containing the cleansed heart disease data.
+    """
     df['sex'][df['sex'] == 0] = 'female'
     df['sex'][df['sex'] == 1] = 'male'
 
@@ -47,6 +61,19 @@ def clean_data(df):
     return df
 
 def change_dtypes(df):
+   """
+    Function will be used to convert features to appropriate type.
+
+    Parameters
+    ----------
+    df: DataFrame
+        A dataframe containing the heart disease data.
+
+    Returns
+    -------
+    df: DataFrame
+        A dataframe containing the cleansed heart disease data.
+    """
     df['sex'] = df['sex'].astype('object')
     df['chest_pain_type'] = df['chest_pain_type'].astype('object')
     df['fasting_blood_sugar'] = df['fasting_blood_sugar'].astype('object')
@@ -58,20 +85,29 @@ def change_dtypes(df):
     return df
 
 def main():
+    """Main function"""
     st.title("❤️ Heart Disease Application ❤️")
     df = pd.read_csv("app/src/data/heart.csv")
     st.sidebar.title("Menu")
+
+    # Creating radio buttons to choose menu options:
     option = st.sidebar.radio(label="Select", 
                              options=["Home", 
                                      "Data", 
                                      "Visualizations", 
                                      "Heart Disease Predictor"])
-    df.columns = ['age', 'sex', 'chest_pain_type', 'resting_blood_pressure', 'cholesterol', 'fasting_blood_sugar', 'rest_ecg', 'max_heart_rate_achieved',
-       'exercise_induced_angina', 'st_depression', 'st_slope', 'num_major_vessels', 'thalassemia', 'target']
+    # Column name changes:
+    df.columns = ['age', 'sex', 'chest_pain_type', 
+                  'resting_blood_pressure', 'cholesterol', 'fasting_blood_sugar', 
+                  'rest_ecg', 'max_heart_rate_achieved', 'exercise_induced_angina', 
+                  'st_depression', 'st_slope', 'num_major_vessels', 
+                  'thalassemia', 'target']
     
+    # Calling cleaning data functions:
     df = clean_data(df)
     df = change_dtypes(df)
 
+    # Calling appropriate function object for pages:
     PAGE_DICT[option](df)
 
     st.sidebar.header("Project Repo info")

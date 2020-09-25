@@ -80,7 +80,7 @@ Next, install the `requirements.txt` in the cloned repository. `cd` into the sou
 
 This should install all the required libraries for the workshop.
 
-If you have reached this point you can wait until the workshop webinar.
+_**If you have reached this point you can wait until the workshop webinar.**_
 
 ## Running the application
 
