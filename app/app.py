@@ -58,7 +58,7 @@ def clean_data(df):
     return df
 
 def change_dtypes(df):
-   """
+    """
     Function will be used to convert features to appropriate type.
 
     Parameters
