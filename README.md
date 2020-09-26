@@ -7,6 +7,11 @@
 
 A data web application to predict heart disease using Streamlit.
 
+## Data source
+
+The data is taken from the UCI Machine Learning repository. 
+
+[Heart Disease UCI dataset](https://www.kaggle.com/ronitf/heart-disease-uci)
 
 These are the setup and concept instructions to be able to follow the project
 end to end.
