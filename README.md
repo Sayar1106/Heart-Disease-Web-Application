@@ -20,6 +20,7 @@ end to end.
 * Ensure that you have Git installed on your system. Install instructions [here](https://git-scm.com/downloads)
 * If you are using Git and/or Github for the first time, [follow this guide](https://docs.github.com/en/github/getting-started-with-github/set-up-git) to set up the CLI for Github
 * Ensure that Anaconda is installed on you system. You can check the setup instructions [here]("https://docs.anaconda.com/anaconda/install/")
+* Ensure that you have Pip installed on your laptop. You can [follow the instructions](https://anaconda.org/anaconda/pip) to install it after you have installed Anaconda. If you want to do it independently, use [this](https://pip.pypa.io/en/stable/installing/).
 * Create an account on [Heroku](https://signup.heroku.com/). 
 * Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 
