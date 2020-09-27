@@ -40,9 +40,10 @@ def data(df):
                 """.format(df.shape[0], df.shape[1]))
     #TODO(Sayar): Add checkbox here:
     # Read data:
-    st.dataframe(data=df)
-    st.subheader("Summary Table")
-    st.write(df.describe())
+    if st.checkbox("Show data"):
+        st.dataframe(data=df)
+        st.subheader("Summary Table")
+        st.write(df.describe())
 
     st.subheader("Data Description")
     st.markdown("""

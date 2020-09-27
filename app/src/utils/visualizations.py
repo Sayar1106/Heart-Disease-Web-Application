@@ -191,4 +191,4 @@ def visualizations(df):
     # Check for number of features selected:
     if len(features) == 2:
         plot_dual_features(df, features[0], features[1])
-
+    
